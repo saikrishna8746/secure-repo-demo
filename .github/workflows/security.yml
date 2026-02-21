@@ -1,0 +1,19 @@
+name: Security Scan Demo
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  security-check:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Run Gitleaks secret scan
+      uses: gitleaks/gitleaks-action@v2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
